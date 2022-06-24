@@ -1,30 +1,30 @@
-<script setup lang="ts">
-// import SpecialUploader from "./components/special-uploader.vue";
-import LogViewer from "./components/LogViewer.vue";
-// const randomImg = "https://source.unsplash.com/random";
-const logs = [
-        {
-          id: "1",
-          timestamp: 100,
-          message: "test message 1",
-          method: "test",
-        },
-        {
-          id: "2",
-          timestamp: 100,
-          message: "test message 2",
-          method: "test",
-        },
-      ]
-</script>
-
 <template>
-  <header>
-    <div class="wrapper">
-      <h3>SandBox</h3>
-      <log-viewer v-bind:logs="logs"></log-viewer>
+    <div id="log_app">
+    <sourced-log-viewer-vue config='{
+        type: "url",
+        location, "https://mycustombusinessapp.com/wp-content/plugins/MCBA-Wordpress/runQuery.php" }'>
+        </sourced-log-viewer-vue>
     </div>
-  </header>
 </template>
 
-<style></style>
+<script lang="ts">
+// import type { ISourceConfig } from "log-object-processor";
+import { defineComponent } from "vue";
+import SourcedLogViewerVue from "./components/SourcedLogViewer.vue";
+
+export default defineComponent({
+  name: "ServeDev",
+  components: {
+    SourcedLogViewerVue,
+  },
+  data() {
+    return {
+      test_object_name: "sourced-log-viewer-vue",
+      logs: [],
+    };
+  },
+  props: {
+    config: Object
+  }
+});
+</script>

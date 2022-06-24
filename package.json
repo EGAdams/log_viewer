@@ -1,6 +1,6 @@
 {
-  "name": "@egadams/vue3-plugin",
-  "version": "0.0.4",
+  "name": "@egadams/log-viewer",
+  "version": "0.0.0",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -8,6 +8,11 @@
     ".": "./dist/index.js",
     "./styles.css": "./dist/style.css"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EGAdams/log_viewer.git"
+  },
+  "author": "EG Adams",
   "browser": {
     "./styles.css": "./dist/style.css"
   },
@@ -25,6 +30,8 @@
   },
   "dependencies": {
     "jquery": "^3.6.0",
+    "log-object-processor": "^1.0.20",
+    "log-vuer": "0.0.6",
     "vue": "^3.2.29"
   },
   "devDependencies": {
