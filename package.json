@@ -8,6 +8,9 @@
     ".": "./dist/index.js",
     "./styles.css": "./dist/style.css"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EGAdams/log_viewer.git"

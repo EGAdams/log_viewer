@@ -1,10 +1,7 @@
-<!-- Log Viewer component test -->
+<!-- SourcedLogViewer component -->
 <template>
-  <!-- the v-html xlates raw html -->
-  <log-viewer v-bind:object_name="test_object_name" 
-              v-bind:logs="logs"
-              v-bind:config="config"></log-viewer>
-  <button @click="startTest">Start Test</button>
+  <log-viewer v-bind:object_name="test_object_name" v-bind:logs="logs"></log-viewer>
+  <button @click="startLogging">Start</button>
   <button @click="clearLog">Clear Log</button>
   <input v-model="monitored_object_id" />
 </template>
@@ -13,44 +10,42 @@
 import { defineComponent          } from "vue";
 import   LogViewer                  from "log-vuer";
 import { LogObjectContainerSource } from "log-object-processor";
-import type { ISourceConfig } from "log-object-processor";
+import { SourceConfig             } from "./SourceConfig";
 
-//import { OriginalConfig } from "../typescript_source/OriginalConfig";
-// import fs from 'vite-plugin-fs/browser';
 import jQuery from 'jquery';
-
 export default defineComponent({
-    name: "LogViewerTest",
-    components: {
-        LogViewer
-    },
-    data() {
-        return {
-            log_count: 0,
-            test_object_name: "Log Vuer",
-            config: Object as type ISourceConfig,
-            logObjectContainerSource: new LogObjectContainerSource( this.config ),
-            read_interval: 0,
-            monitored_object_id: "MessageManager_1595",
-            logs: [{ id: "1", timestamp: 100, message: "ready.", method: "No Source." }]}; },
-    methods: {
-        startTest() {
-            setInterval( () => {
-                if ( this.config.type == "url" ) {
-                    this.logObjectContainerSource.refresh( this.monitored_object_id );
-                } else {
-                    this.logObjectContainerSource.refreshFromFile( this.config.location );
-                }
-                this.logs = this.logObjectContainerSource.logObjectProcessor.getWrittenLogs();
-                if ( this.log_count != this.logs.length ) {
-                    jQuery( "#tester_1_log_viewer" ).animate(
-                            { scrollTop: jQuery( "#tester_1_log_viewer" ).prop( "scrollHeight" ) * 2 },
-                            150 );
-                    this.log_count = this.logs.length; }}, 250 ); },
-        async clearLog() {
-            // fs.writeFile( "test.txt", '' );
-            this.logObjectContainerSource.logObjectProcessor.clearLogs();
-            this.logs = []; }}
+  name: "SourcedLogViewer",
+  components: { LogViewer },
+  data() {
+    return {
+      log_count: 0,
+      test_object_name: "Log Vuer",
+      logObjectContainerSource: new LogObjectContainerSource(
+        new SourceConfig(this.data_source_type, this.data_source_location)
+      ),
+      read_interval: 0,
+      monitored_object_id: "MessageManager_1616",
+      logs: [{ id: "1", timestamp: 100, message: "ready.", method: "No Source." }],
+    }; },
+  methods: {
+    startLogging() {
+      setInterval(() => {
+        this.logObjectContainerSource.refresh(this.monitored_object_id);
+        this.logs = this.logObjectContainerSource.logObjectProcessor.getWrittenLogs();
+        if (this.log_count != this.logs.length) {
+          jQuery("#tester_1_log_viewer").animate(
+            { scrollTop: jQuery("#tester_1_log_viewer").prop("scrollHeight") * 2 },
+            150
+          );
+          this.log_count = this.logs.length;
+        }
+      }, 1000); },
+    async clearLog() {
+      this.logObjectContainerSource.logObjectProcessor.clearLogs();
+      this.logs = []; }},
+  props: {
+    data_source_type: {     type: String, default: "url"                   },
+    data_source_location: { type: String, default: "http://localhost:8080" }}
 });
 </script>
 
