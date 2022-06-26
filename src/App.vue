@@ -2,7 +2,7 @@
     <div id="log_app">
     <sourced-log-viewer-vue  
         data_source_type="url"
-        data_source_location="https://mycustombusinessapp.com/wp-content/plugins/MCBA-Wordpress/runQuery.php">
+        data_source_location="">
     </sourced-log-viewer-vue>
     </div>
 </template>
