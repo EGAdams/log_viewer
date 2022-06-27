@@ -11,5 +11,3 @@ export class SourceConfig implements ISourceConfig {
         this.type     = _type;
         this.location = _location; }
 }
-
-// https://mycustombusinessapp.com/wp-content/plugins/MCBA-Wordpress/runQuery.php
