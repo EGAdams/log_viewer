@@ -44,3 +44,8 @@ npm run build
 ```sh
 npm run lint
 ```
+
+version: 0.0.7  added object_id
+version: 0.0.8  removed noisy console.log
+version: 0.0.9  forgot to build
+version: 0.0.10 removed noisy from lop

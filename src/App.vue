@@ -1,8 +1,9 @@
 <template>
     <div id="log_app">
     <sourced-log-viewer-vue  
-        data_source_type="url"
-        data_source_location="">
+        data_source_type=     "url"
+        data_source_location= "http://localhost:8080"
+        object_id=            "MessageManager_1616">
     </sourced-log-viewer-vue>
     </div>
 </template>
