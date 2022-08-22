@@ -3,6 +3,10 @@
         "rushstack",
         "typecheck",
         "vitest",
-        "vnode"
-    ]
+        "vnode",
+        "vuer",
+        "egadams"
+
+    ],
+    "liveServer.settings.port": 5502
 }

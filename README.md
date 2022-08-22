@@ -1,6 +1,7 @@
 # v-test-packge
 
-This template should help get you started developing with Vue 3 in Vite.
+0.0.11 start source poll on mount, added clearLogInterval method
+0.0.13 upgraded log object processor to return from consumeData() if there is no data
 
 ## Recommended IDE Setup
 

@@ -20,12 +20,13 @@ export default defineComponent( {
             logObjectContainerSource: new LogObjectContainerSource(
                 new SourceConfig( this.data_source_type, this.data_source_location, this.object_id )
             ),
+            interval: 0,
             read_interval: 0,
             logs: [ { id: "1", timestamp: 100, message: "ready.", method: "No Source." } ]
         }; },
     methods: {
         startLogging () {
-            setInterval( () => {
+            this.interval = setInterval( () => {
                 this.logObjectContainerSource.refresh( this.object_id );
                 this.logs = this.logObjectContainerSource.logObjectProcessor.getWrittenLogs();
                 if ( this.log_count != this.logs.length ) {
@@ -34,12 +35,16 @@ export default defineComponent( {
                     this.log_count = this.logs.length; }}, 1000 ); },
         async clearLog () {
             this.logObjectContainerSource.logObjectProcessor.clearLogs();
-            this.logs = []; }},
+            this.logs = []; },
+            
+        clearLogInterval () { clearInterval( this.interval ); }},
     props: {
         data_source_type: { type: String, default: "url" },
         data_source_location: { type: String, default: "http://localhost:8080" },
-        object_id: { type: String, default: "MessageManager_1616" }}
-} );
+        object_id: { type: String, default: "AnonymousIdentity_1669" }},
+
+    mounted () { this.startLogging(); }
+});
 </script>
 
 <style scoped>
