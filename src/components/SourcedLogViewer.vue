@@ -27,11 +27,11 @@ export default defineComponent( {
     methods: {
         startLogging () {
             this.interval = setInterval( () => {
-                this.logObjectContainerSource.refresh( this.object_id );
+                this.logObjectContainerSource.refresh();
                 this.logs = this.logObjectContainerSource.logObjectProcessor.getWrittenLogs();
                 if ( this.log_count != this.logs.length ) {
-                    jQuery( "#" + this.object_id ).animate(
-                        { scrollTop: jQuery( "#" + this.object_id ).prop( "scrollHeight" ) * 2 }, 150 );
+                    const $scrollable_element = jQuery( "#" + this.object_id + "_log_viewer" );
+                    $scrollable_element.animate({ scrollTop: $scrollable_element.prop( "scrollHeight" ) * 2 }, 150 );
                     this.log_count = this.logs.length; }}, 1000 ); },
         async clearLog () {
             this.logObjectContainerSource.logObjectProcessor.clearLogs();
