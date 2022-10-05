@@ -51,3 +51,5 @@ version: 0.0.8  removed noisy console.log
 version: 0.0.9  forgot to build
 version: 0.0.10 removed noisy from lop
 version: 0.0.19 added id to source data for select
+version: 0.0.20 increment log object processor
+version: 0.0.21 updated all dependencies with ncu -u && npm install
