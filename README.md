@@ -53,3 +53,5 @@ version: 0.0.10 removed noisy from lop
 version: 0.0.19 added id to source data for select
 version: 0.0.20 increment log object processor
 version: 0.0.21 updated all dependencies with ncu -u && npm install
+version: 0.0.22 sanity check.  vite dev is broken.  build works
+version: 0.0.23 upgraded log object container source
